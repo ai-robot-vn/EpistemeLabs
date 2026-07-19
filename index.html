@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Episteme AI - Episteme Technologies</title>
+    <title>Apore AI - Apore Technologies</title>
     
     <!-- Iconify for Lucide Icons -->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -105,7 +105,7 @@
                         <iconify-icon icon="lucide:loader" class="text-3xl text-white dark:text-black"></iconify-icon>
                     </div>
                 </div>
-                <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">Welcome to Episteme</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">Welcome to Apore</h2>
                 <p class="text-center text-gray-500 dark:text-gray-400 text-sm mb-8">Sign in to continue exploring the future.</p>
                 
                 <div class="flex p-1 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6">
@@ -153,7 +153,7 @@
                     <div class="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
                         <iconify-icon icon="lucide:loader" class="text-white dark:text-black text-lg"></iconify-icon>
                     </div>
-                    <span class="font-semibold text-gray-900 dark:text-white text-[17px] tracking-tight">Episteme AI</span>
+                    <span class="font-semibold text-gray-900 dark:text-white text-[17px] tracking-tight">Apore AI</span>
                 </div>
                 <div class="flex items-center gap-1">
                     <button onclick="toggleSearchView()" class="p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Search">
@@ -212,7 +212,7 @@
                         <iconify-icon icon="lucide:menu" class="text-xl"></iconify-icon>
                     </button>
                     <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors text-gray-700 dark:text-gray-200 font-medium">
-                        <span class="text-[15px] font-semibold">Episteme 1.5</span>
+                        <span class="text-[15px] font-semibold">Apore 1.5</span>
                         <iconify-icon icon="lucide:chevron-down" class="text-sm text-gray-400"></iconify-icon>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                                 <iconify-icon icon="lucide:paperclip" class="text-xl"></iconify-icon>
                             </button>
                             
-                            <textarea id="user-input" rows="1" class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-0 focus:ring-0 resize-none py-3 px-3 text-[15px] leading-relaxed hide-scrollbar max-h-[200px]" placeholder="Message Episteme..." oninput="autoResize(this)" onkeydown="handleKeydown(event)"></textarea>
+                            <textarea id="user-input" rows="1" class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-0 focus:ring-0 resize-none py-3 px-3 text-[15px] leading-relaxed hide-scrollbar max-h-[200px]" placeholder="Message Apore..." oninput="autoResize(this)" onkeydown="handleKeydown(event)"></textarea>
                             
                             <button id="send-btn" onclick="sendMessage()" class="p-2 mb-1 mr-1 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full transition-colors shrink-0 flex items-center justify-center w-10 h-10">
                                 <iconify-icon icon="lucide:arrow-up" class="text-xl font-bold"></iconify-icon>
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <span class="text-[11.5px] text-gray-500 dark:text-gray-400 font-medium tracking-wide">Episteme AI can make mistakes. Consider verifying important information.</span>
+                        <span class="text-[11.5px] text-gray-500 dark:text-gray-400 font-medium tracking-wide">Apore AI can make mistakes. Consider verifying important information.</span>
                     </div>
                 </div>
             </div>
@@ -374,7 +374,7 @@
                     <!-- Account -->
                     <div id="content-account" class="settings-content hidden max-w-xl">
                         <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Personal Profile</h4>
-                        <p class="text-[14px] text-gray-500 dark:text-gray-400 mb-8">Personal information helps Episteme AI contextualize its responses to better suit you.</p>
+                        <p class="text-[14px] text-gray-500 dark:text-gray-400 mb-8">Personal information helps Apore AI contextualize its responses to better suit you.</p>
                         
                         <div class="space-y-5">
                             <div>
@@ -454,10 +454,10 @@
         let isAuthenticated = false;
 
         function checkUserStatus() {
-            const storedAuth = localStorage.getItem('Episteme_auth');
+            const storedAuth = localStorage.getItem('Apore_auth');
             if (storedAuth === 'true') {
                 isAuthenticated = true;
-                const storedProfile = localStorage.getItem('Episteme_profile');
+                const storedProfile = localStorage.getItem('Apore_profile');
                 if (storedProfile) {
                     try { userProfile = JSON.parse(storedProfile); } catch(e) {}
                 }
@@ -477,7 +477,7 @@
 
         function loadLocalData() {
             try {
-                const storedChats = localStorage.getItem('Episteme_chats');
+                const storedChats = localStorage.getItem('Apore_chats');
                 if (storedChats) {
                     chats = JSON.parse(storedChats);
                     chats.sort((a, b) => b.updatedAt - a.updatedAt);
@@ -486,7 +486,7 @@
         }
 
         function syncChatsToLocal() {
-            try { localStorage.setItem('Episteme_chats', JSON.stringify(chats)); } 
+            try { localStorage.setItem('Apore_chats', JSON.stringify(chats)); } 
             catch(e) { console.error("Local storage error:", e); }
         }
 
@@ -517,26 +517,26 @@
                 if (name) {
                     userProfile.name = name;
                     userProfile.email = email;
-                    localStorage.setItem('Episteme_profile', JSON.stringify(userProfile));
+                    localStorage.setItem('Apore_profile', JSON.stringify(userProfile));
                 }
             } else if (type === 'login') {
                 const email = document.getElementById('login-form').querySelector('input[type="email"]').value.trim();
                 userProfile.email = email;
-                const storedProfile = localStorage.getItem('Episteme_profile');
+                const storedProfile = localStorage.getItem('Apore_profile');
                 if (storedProfile) {
                     try { userProfile = { ...JSON.parse(storedProfile), email }; } catch(e) {}
                 }
-                localStorage.setItem('Episteme_profile', JSON.stringify(userProfile));
+                localStorage.setItem('Apore_profile', JSON.stringify(userProfile));
             }
             isAuthenticated = true;
-            localStorage.setItem('Episteme_auth', 'true');
+            localStorage.setItem('Apore_auth', 'true');
             hideAuthView();
             loadLocalData();
             initAppUI();
         };
 
         window.logout = function() {
-            localStorage.removeItem('Episteme_auth');
+            localStorage.removeItem('Apore_auth');
             window.location.reload();
         }
 
@@ -548,7 +548,7 @@
                 email: document.getElementById('prof-email').value.trim(),
                 job: document.getElementById('prof-job').value.trim(),
             };
-            localStorage.setItem('Episteme_profile', JSON.stringify(userProfile));
+            localStorage.setItem('Apore_profile', JSON.stringify(userProfile));
             applyProfileToUI();
             customAlert("Profile has been saved successfully.");
         };
@@ -560,7 +560,7 @@
             if(userProfile.job) extraInfo += `Profession/Interests: ${userProfile.job}. `;
             
             return `# IDENTITY & CORE PURPOSE
-- Identity: You are Episteme AI, model Episteme 1.5, a sophisticated AI assistant developed by Episteme Technologies.
+- Identity: You are Apore AI, model Apore 1.5, a sophisticated AI assistant developed by Apore Technologies.
 - Purpose: To provide highly accurate, intellectually rigorous, and well-structured information.
 - Context: ${extraInfo}
 
@@ -629,12 +629,12 @@
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
                 document.documentElement.classList.remove('light');
-                localStorage.setItem('Episteme_theme', 'dark');
+                localStorage.setItem('Apore_theme', 'dark');
                 document.querySelector('input[value="dark"]').checked = true;
             } else {
                 document.documentElement.classList.remove('dark');
                 document.documentElement.classList.add('light');
-                localStorage.setItem('Episteme_theme', 'light');
+                localStorage.setItem('Apore_theme', 'light');
                 document.querySelector('input[value="light"]').checked = true;
             }
         };
@@ -904,7 +904,7 @@
                         <iconify-icon icon="lucide:loader" class="text-[18px] text-white dark:text-black"></iconify-icon>
                     </div>
                     <div class="flex-1 min-w-0 max-w-full">
-                        <div class="font-bold text-[15px] text-gray-900 dark:text-white mb-1.5 tracking-tight">Episteme AI</div>
+                        <div class="font-bold text-[15px] text-gray-900 dark:text-white mb-1.5 tracking-tight">Apore AI</div>
                         <div class="prose max-w-none markdown-body ${isStreaming ? 'cursor-blink' : ''}">${isStreaming ? '' : DOMPurify.sanitize(marked.parse(content))}</div>
                         <div class="msg-actions flex items-center gap-1.5 mt-3 -ml-2">
                             <button onclick="copyMessageText(this)" data-content="${encodeURIComponent(content)}" class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors" title="Copy">
@@ -1090,7 +1090,7 @@
         };
 
         function initAppUI() {
-            const savedTheme = localStorage.getItem('Episteme_theme') || 'light';
+            const savedTheme = localStorage.getItem('Apore_theme') || 'light';
             setTheme(savedTheme);
             applyProfileToUI();
             renderSidebar();
