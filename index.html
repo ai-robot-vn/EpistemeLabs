@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi" class="light">
 <head>
@@ -6,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Episteme AI - Episteme Technologies AI</title>
     
-    <!-- Fonts: Google Sans Flex -->
+    <!-- Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,GRAD,ROND@6..144,342,0..100,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=sw" rel="stylesheet">
     
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Heroicons via Iconify Runtime -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +20,7 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Google Sans Flex', 'sans-serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         gray: {
                             50: '#f9f9f9',
@@ -93,7 +92,7 @@
         .dark .prose code { background-color: #262626; color: #fca5a5; }
         .dark .prose pre code { color: inherit; background-color: transparent; }
 
-        .copy-code-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.1); color: #ccc; border: none; font-size: 0.75rem; cursor: poGoogle Sans Flex; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 4px; transition: all 0.2s; font-family: 'Google Sans Flex', sans-serif;}
+        .copy-code-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.1); color: #ccc; border: none; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 4px; transition: all 0.2s; font-family: 'Inter', sans-serif;}
         .copy-code-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
 
         .cursor-blink::after { content: '▋'; animation: blink 1s step-start infinite; color: #000; margin-left: 2px; }
@@ -114,6 +113,65 @@
 </head>
 <body class="flex h-screen w-full antialiased bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-gray-100 selection:bg-gray-300 dark:selection:bg-gray-700 selection:text-black dark:selection:text-white">
 
+    <!-- AUTH VIEW (Nghiêm ngặt) -->
+    <div id="auth-view" class="fixed inset-0 z-[100] bg-white/60 dark:bg-[#0f0f0f]/80 backdrop-blur-xl flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="max-w-md w-full bg-white dark:bg-[#171717] rounded-[32px] p-8 border border-gray-200 dark:border-gray-800 shadow-2xl relative overflow-hidden">
+            <!-- Decorative blob -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-gray-100 dark:bg-gray-800 rounded-full blur-3xl opacity-50"></div>
+            
+            <div class="relative z-10 flex flex-col items-center mb-8">
+                <div class="w-16 h-16 rounded-2xl bg-black dark:bg-white flex items-center justify-center mb-4 shadow-xl">
+                    <iconify-icon icon="heroicons:sparkles-solid" class="text-3xl text-white dark:text-black"></iconify-icon>
+                </div>
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-1">Episteme AI</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Đăng nhập để bắt đầu trò chuyện</p>
+            </div>
+
+            <div class="relative z-10">
+                <div class="flex p-1 bg-gray-100 dark:bg-[#262626] rounded-xl mb-6">
+                    <button onclick="switchAuthTab('login')" id="auth-tab-login" class="flex-1 py-2 text-sm font-medium rounded-lg bg-white dark:bg-[#404040] text-gray-900 dark:text-white shadow-sm transition-all">Đăng nhập</button>
+                    <button onclick="switchAuthTab('register')" id="auth-tab-register" class="flex-1 py-2 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all">Đăng ký</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" onsubmit="handleAuth(event, 'login')" class="flex flex-col gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1">Email</label>
+                        <input type="email" required class="w-full bg-gray-50 dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-xl px-4 py-3 text-[15px] outline-none transition-colors dark:text-white" placeholder="mail@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1">Mật khẩu</label>
+                        <input type="password" required class="w-full bg-gray-50 dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-xl px-4 py-3 text-[15px] outline-none transition-colors dark:text-white" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full py-3.5 mt-2 bg-black dark:bg-white text-white dark:text-black rounded-xl text-[15px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <span>Đăng nhập</span>
+                        <iconify-icon icon="heroicons:arrow-right" class="text-lg"></iconify-icon>
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" onsubmit="handleAuth(event, 'register')" class="hidden flex-col gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1">Tên hiển thị</label>
+                        <input type="text" id="reg-name" required class="w-full bg-gray-50 dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-xl px-4 py-3 text-[15px] outline-none transition-colors dark:text-white" placeholder="Tên của bạn">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1">Email</label>
+                        <input type="email" required class="w-full bg-gray-50 dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-xl px-4 py-3 text-[15px] outline-none transition-colors dark:text-white" placeholder="mail@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1">Mật khẩu</label>
+                        <input type="password" required minlength="6" class="w-full bg-gray-50 dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-xl px-4 py-3 text-[15px] outline-none transition-colors dark:text-white" placeholder="Tối thiểu 6 ký tự">
+                    </div>
+                    <button type="submit" class="w-full py-3.5 mt-2 bg-black dark:bg-white text-white dark:text-black rounded-xl text-[15px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <span>Tạo tài khoản</span>
+                        <iconify-icon icon="heroicons:user-plus" class="text-lg"></iconify-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="mobile-overlay" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden transition-opacity" onclick="toggleSidebar()"></div>
 
     <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-64 bg-[#f9f9f9] dark:bg-[#171717] flex flex-col transition-transform transform -translate-x-full md:translate-x-0 duration-300 ease-in-out border-r border-gray-200 dark:border-gray-800">
@@ -123,26 +181,26 @@
             <div class="flex items-center justify-between px-2 pt-1">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
-                        <i class="ph-fill ph-sparkle text-white dark:text-black text-lg"></i>
+                        <iconify-icon icon="heroicons:sparkles-solid" class="text-white dark:text-black text-lg"></iconify-icon>
                     </div>
                     <span class="font-semibold text-gray-900 dark:text-white text-lg">Episteme AI</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <button onclick="toggleSearchView()" class="p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Search in Library">
-                        <i class="ph ph-magnifying-glass text-lg"></i>
+                    <button onclick="toggleSearchView()" class="p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors flex items-center justify-center" title="Search in Library">
+                        <iconify-icon icon="heroicons:magnifying-glass" class="text-lg"></iconify-icon>
                     </button>
-                    <button class="md:hidden p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg" onclick="toggleSidebar()">
-                        <i class="ph ph-x text-lg"></i>
+                    <button class="md:hidden p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg flex items-center justify-center" onclick="toggleSidebar()">
+                        <iconify-icon icon="heroicons:x-mark" class="text-lg"></iconify-icon>
                     </button>
                 </div>
             </div>
             
-            <button onclick="createNewChat()" class="flex items-center justify-between w-full px-3 py-2.5 hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl text-sm font-medium transition-colors bg-transparent border-0 shadow-none cursor-poGoogle Sans Flex">
+            <button onclick="createNewChat()" class="flex items-center justify-between w-full px-3 py-2.5 hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl text-sm font-medium transition-colors bg-transparent border-0 shadow-none cursor-pointer">
                 <div class="flex items-center gap-2">
-                    <i class="ph ph-plus text-base"></i>
+                    <iconify-icon icon="heroicons:plus" class="text-base"></iconify-icon>
                     New chat
                 </div>
-                <i class="ph ph-pencil-simple text-base text-gray-400"></i>
+                <iconify-icon icon="heroicons:pencil-square" class="text-base text-gray-400"></iconify-icon>
             </button>
             
             <!-- Long solid horizontal line separating New Chat from Chat List -->
@@ -154,19 +212,19 @@
         </div>
 
         <div class="p-3 border-t border-gray-200 dark:border-gray-800 flex flex-col gap-1">
-            <div onclick="openSettings('activity')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-poGoogle Sans Flex text-gray-700 dark:text-gray-300">
+            <div onclick="openSettings('activity')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer text-gray-700 dark:text-gray-300">
                 <div class="flex items-center gap-2">
-                    <i class="ph ph-clock-counter-clockwise text-lg"></i>
+                    <iconify-icon icon="heroicons:clock" class="text-lg"></iconify-icon>
                     <span class="text-sm font-medium">Work</span>
                 </div>
             </div>
-            <div onclick="openSettings('theme')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-poGoogle Sans Flex text-gray-700 dark:text-gray-300">
+            <div onclick="openSettings('theme')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer text-gray-700 dark:text-gray-300">
                 <div class="flex items-center gap-2">
-                    <i class="ph ph-gear text-lg"></i>
+                    <iconify-icon icon="heroicons:cog-6-tooth" class="text-lg"></iconify-icon>
                     <span class="text-sm font-medium">Settings</span>
                 </div>
             </div>
-            <div onclick="openSettings('account')" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-poGoogle Sans Flex mt-1">
+            <div onclick="openSettings('account')" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer mt-1">
                 <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center text-sm font-semibold text-black dark:text-white shadow-sm user-avatar-text">A</div>
                 <div class="flex-1 min-w-0">
                     <p class="text-sm font-medium text-gray-900 dark:text-white truncate user-name-text">An</p>
@@ -181,17 +239,17 @@
         <div id="main-view" class="flex-1 flex flex-col h-full w-full absolute inset-0 z-10 transition-opacity duration-300">
             <header class="h-14 flex items-center justify-between px-4 sticky top-0 z-30 bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-md">
                 <div class="flex items-center gap-2">
-                    <button class="md:hidden p-2 -ml-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md" onclick="toggleSidebar()">
-                        <i class="ph ph-list text-xl"></i>
+                    <button class="md:hidden p-2 -ml-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md flex items-center justify-center" onclick="toggleSidebar()">
+                        <iconify-icon icon="heroicons:bars-3" class="text-xl"></iconify-icon>
                     </button>
-                    <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-poGoogle Sans Flex transition-colors text-gray-700 dark:text-gray-200 font-medium">
+                    <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors text-gray-700 dark:text-gray-200 font-medium">
                         <span class="text-[15px]">Episteme 1.5 Ventures</span>
-                        <i class="ph ph-caret-down text-sm text-gray-400"></i>
+                        <iconify-icon icon="heroicons:chevron-down" class="text-sm text-gray-400"></iconify-icon>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <button class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md transition-colors">
-                        <i class="ph ph-share-network text-lg"></i>
+                    <button class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md transition-colors flex items-center justify-center">
+                        <iconify-icon icon="heroicons:share" class="text-lg"></iconify-icon>
                     </button>
                 </div>
             </header>
@@ -199,25 +257,25 @@
             <div id="chat-container" class="flex-1 overflow-y-auto scroll-smooth pb-32">
                 <div id="welcome-screen" class="h-full flex flex-col items-center justify-center p-6 text-center max-w-3xl mx-auto">
                     <div class="w-14 h-14 rounded-2xl bg-black dark:bg-white flex items-center justify-center mb-6 shadow-xl shadow-black/10 dark:shadow-white/10">
-                        <i class="ph-fill ph-sparkle text-3xl text-white dark:text-black"></i>
+                        <iconify-icon icon="heroicons:sparkles-solid" class="text-3xl text-white dark:text-black"></iconify-icon>
                     </div>
                     <h1 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Let's chat, friend !</h1>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-                        <button onclick="setInput('Analyze Dijkstra's algorithm and write example Python code.')" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><i class="ph ph-code text-lg text-gray-500"></i> Code</div>
+                        <button onclick="setInput(&quot;Analyze Dijkstra's algorithm and write example Python code.&quot;)" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><iconify-icon icon="heroicons:code-bracket" class="text-lg text-gray-500"></iconify-icon> Code</div>
                             <p class="text-[13px] text-gray-500 dark:text-gray-400 truncate">Analysis of Dijkstra's algorithm with code</p>
                         </button>
-                        <button onclick="setInput('Einstein's explanation of gravity and spacetime.')" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><i class="ph ph-atom text-lg text-gray-500"></i> Explore</div>
+                        <button onclick="setInput(&quot;Einstein's explanation of gravity and spacetime.&quot;)" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><iconify-icon icon="heroicons:globe-alt" class="text-lg text-gray-500"></iconify-icon> Explore</div>
                             <p class="text-[13px] text-gray-500 dark:text-gray-400 truncate">Explain gravity and spacetime.</p>
                         </button>
                         <button onclick="setInput('Create an outline for a research topic on the Evolution of Artificial Intelligence.')" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><i class="ph ph-pen-nib text-lg text-gray-500"></i> Creative</div>
+                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><iconify-icon icon="heroicons:pencil" class="text-lg text-gray-500"></iconify-icon> Creative</div>
                             <p class="text-[13px] text-gray-500 dark:text-gray-400 truncate">AI Research Outline</p>
                         </button>
                         <button onclick="setInput('Solve this math problem for me :')" class="p-4 text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><i class="ph ph-calculator text-lg text-gray-500"></i> Math</div>
+                            <div class="flex items-center gap-2 mb-1 text-gray-900 dark:text-gray-200 font-medium text-[15px]"><iconify-icon icon="heroicons:calculator" class="text-lg text-gray-500"></iconify-icon> Math</div>
                             <p class="text-[13px] text-gray-500 dark:text-gray-400 truncate">Integral by parts</p>
                         </button>
                     </div>
@@ -235,7 +293,7 @@
                     
                     <div id="stop-btn-container" class="absolute -top-12 left-1/2 transform -translate-x-1/2 hidden">
                         <button onclick="stopGeneration()" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#262626] border border-gray-300 dark:border-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                            <i class="ph-fill ph-stop text-base"></i>
+                            <iconify-icon icon="heroicons:stop-solid" class="text-base"></iconify-icon>
                             Wait
                         </button>
                     </div>
@@ -250,13 +308,13 @@
 
                         <div class="flex items-end p-1.5 w-full">
                             <button onclick="document.getElementById('file-upload').click()" class="p-2.5 mb-0.5 ml-1 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full transition-colors shrink-0 flex items-center justify-center" title="Đính kèm tài liệu">
-                                <i class="ph ph-paperclip text-xl"></i>
+                                <iconify-icon icon="heroicons:paper-clip" class="text-xl"></iconify-icon>
                             </button>
                             
                             <textarea id="user-input" rows="1" class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-0 focus:ring-0 resize-none py-3 px-2 text-[15px] leading-relaxed hide-scrollbar max-h-[150px]" placeholder="Ask Episteme..." oninput="autoResize(this)" onkeydown="handleKeydown(event)"></textarea>
                             
                             <button id="send-btn" onclick="sendMessage()" class="p-2 mb-1.5 mr-1.5 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full transition-colors shrink-0 flex items-center justify-center w-9 h-9">
-                                <i class="ph ph-arrow-up text-lg font-bold"></i>
+                                <iconify-icon icon="heroicons:arrow-up" class="text-lg font-bold"></iconify-icon>
                             </button>
                         </div>
                     </div>
@@ -270,14 +328,14 @@
         <div id="search-view" class="hidden flex-1 flex-col h-full w-full absolute inset-0 z-20 bg-white dark:bg-[#0f0f0f] transition-opacity duration-300 overflow-y-auto">
             <div class="max-w-3xl mx-auto w-full p-4 md:p-8 pt-8">
                 <div class="flex items-center gap-4 mb-8">
-                    <button onclick="closeSearchView()" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
-                        <i class="ph ph-arrow-left text-2xl"></i>
+                    <button onclick="closeSearchView()" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
+                        <iconify-icon icon="heroicons:arrow-left" class="text-2xl"></iconify-icon>
                     </button>
                     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Search in Library</h2>
                 </div>
                 
                 <div class="relative mb-8">
-                    <i class="ph ph-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+                    <iconify-icon icon="heroicons:magnifying-glass" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></iconify-icon>
                     <input type="text" id="search-input" oninput="handleSearch()" class="w-full bg-gray-50 dark:bg-[#171717] border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white focus:bg-white dark:focus:bg-[#262626] rounded-full py-3.5 pl-12 pr-4 text-[15px] focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-all" placeholder="Search for chat logs...">
                 </div>
 
@@ -289,22 +347,22 @@
             <div class="flex h-full w-full max-w-5xl mx-auto flex-col md:flex-row">
                 <!-- Nút Đóng (Mobile & Desktop) -->
                 <div class="absolute top-4 right-4 z-40">
-                    <button onclick="closeSettings()" class="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors">
-                        <i class="ph ph-x text-xl"></i>
+                    <button onclick="closeSettings()" class="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors flex items-center justify-center">
+                        <iconify-icon icon="heroicons:x-mark" class="text-xl"></iconify-icon>
                     </button>
                 </div>
 
                 <!-- Settings Sidebar -->
                 <div class="w-full md:w-64 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-4 md:p-6 overflow-x-auto md:overflow-y-auto shrink-0 flex md:flex-col gap-2 hide-scrollbar">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 md:mb-6 hidden md:block">Settings</h3>
-                    <button onclick="switchSettingsTab('theme')" id="tab-theme" class="tab-btn active text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap">
-                        <i class="ph ph-palette mr-2"></i>interface
+                    <button onclick="switchSettingsTab('theme')" id="tab-theme" class="tab-btn active text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap flex items-center">
+                        <iconify-icon icon="heroicons:paint-brush" class="mr-2 inline-block text-lg"></iconify-icon>Interface
                     </button>
-                    <button onclick="switchSettingsTab('activity')" id="tab-activity" class="tab-btn text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap">
-                        <i class="ph ph-clock-counter-clockwise mr-2"></i>Chat Work
+                    <button onclick="switchSettingsTab('activity')" id="tab-activity" class="tab-btn text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap flex items-center">
+                        <iconify-icon icon="heroicons:clock" class="mr-2 inline-block text-lg"></iconify-icon>Chat Work
                     </button>
-                    <button onclick="switchSettingsTab('account')" id="tab-account" class="tab-btn text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap">
-                        <i class="ph ph-user-circle mr-2"></i>Account
+                    <button onclick="switchSettingsTab('account')" id="tab-account" class="tab-btn text-left px-4 py-2.5 rounded-xl text-[14px] text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors whitespace-nowrap flex items-center">
+                        <iconify-icon icon="heroicons:user-circle" class="mr-2 inline-block text-lg"></iconify-icon>Account
                     </button>
                 </div>
 
@@ -314,9 +372,9 @@
                     <div id="content-theme" class="settings-content max-w-xl">
                         <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Customize the interface</h4>
                         <div class="flex flex-col gap-4">
-                            <label class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-xl cursor-poGoogle Sans Flex hover:bg-gray-50 dark:hover:bg-[#171717] transition-colors">
+                            <label class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-[#171717] transition-colors">
                                 <div class="flex items-center gap-3">
-                                    <i class="ph ph-sun text-2xl text-gray-500"></i>
+                                    <iconify-icon icon="heroicons:sun" class="text-2xl text-gray-500"></iconify-icon>
                                     <div>
                                         <div class="font-medium text-gray-900 dark:text-white">Brightness mode</div>
                                         <div class="text-xs text-gray-500">User-friendly white interface</div>
@@ -325,9 +383,9 @@
                                 <input type="radio" name="theme-radio" value="light" onchange="setTheme('light')" class="w-5 h-5 accent-black dark:accent-white">
                             </label>
                             
-                            <label class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-xl cursor-poGoogle Sans Flex hover:bg-gray-50 dark:hover:bg-[#171717] transition-colors">
+                            <label class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-[#171717] transition-colors">
                                 <div class="flex items-center gap-3">
-                                    <i class="ph ph-moon text-2xl text-gray-500"></i>
+                                    <iconify-icon icon="heroicons:moon" class="text-2xl text-gray-500"></iconify-icon>
                                     <div>
                                         <div class="font-medium text-gray-900 dark:text-white">Dark Mode</div>
                                         <div class="text-xs text-gray-500">Gentle on the eyes for nighttime use.</div>
@@ -427,6 +485,57 @@
 
         let attachedFile = null;
         let isUploading = false;
+
+        let isAuthenticated = false;
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('login-form');
+            const regForm = document.getElementById('register-form');
+            const loginTab = document.getElementById('auth-tab-login');
+            const regTab = document.getElementById('auth-tab-register');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                loginForm.classList.add('flex');
+                regForm.classList.add('hidden');
+                regForm.classList.remove('flex');
+                
+                loginTab.className = "flex-1 py-2 text-sm font-medium rounded-lg bg-white dark:bg-[#404040] text-gray-900 dark:text-white shadow-sm transition-all";
+                regTab.className = "flex-1 py-2 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all";
+            } else {
+                regForm.classList.remove('hidden');
+                regForm.classList.add('flex');
+                loginForm.classList.add('hidden');
+                loginForm.classList.remove('flex');
+                
+                regTab.className = "flex-1 py-2 text-sm font-medium rounded-lg bg-white dark:bg-[#404040] text-gray-900 dark:text-white shadow-sm transition-all";
+                loginTab.className = "flex-1 py-2 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all";
+            }
+        }
+
+        function handleAuth(e, type) {
+            e.preventDefault();
+            
+            // Xác thực cục bộ (Mô phỏng cho phiên hiện tại)
+            isAuthenticated = true;
+            
+            if (type === 'register') {
+                const name = document.getElementById('reg-name').value.trim();
+                if (name) {
+                    userProfile.name = name;
+                    localStorage.setItem('Episteme_profile', JSON.stringify(userProfile));
+                    applyProfileToUI();
+                }
+                customAlert("Đăng ký tài khoản thành công! Chào mừng bạn đến với Episteme AI.");
+            }
+
+            // Ẩn màn hình đăng nhập
+            const authView = document.getElementById('auth-view');
+            authView.classList.add('opacity-0');
+            setTimeout(() => {
+                authView.classList.add('hidden');
+            }, 300);
+        }
 
         function getSystemPrompt() {
             let extraInfo = "";
@@ -622,13 +731,13 @@
             if (filteredChats.length === 0) {
                 resultsContainer.innerHTML = `
                     <div class="text-center py-12 text-gray-400">
-                        <i class="ph ph-magnifying-glass-minus text-4xl mb-3 opacity-50"></i>
+                        <iconify-icon icon="heroicons:magnifying-glass" class="text-4xl mb-3 opacity-50"></iconify-icon>
                         <p class="text-[15px]">Sorry, we couldn't find any chat logs.</p>
                     </div>`;
             } else {
                 filteredChats.forEach(chat => {
                     const div = document.createElement('div');
-                    div.className = "p-4 border border-gray-100 dark:border-gray-800 rounded-2xl hover:bg-gray-50 dark:hover:bg-[#171717] cursor-poGoogle Sans Flex transition-colors flex items-center justify-between group";
+                    div.className = "p-4 border border-gray-100 dark:border-gray-800 rounded-2xl hover:bg-gray-50 dark:hover:bg-[#171717] cursor-pointer transition-colors flex items-center justify-between group";
                     div.onclick = () => { loadChat(chat.id); closeSearchView(); };
                     
                     const messagePreview = chat.messages.filter(m => m.role === 'user').pop()?.content || "Cuộc trò chuyện mới";
@@ -638,7 +747,7 @@
                             <h3 class="font-medium text-[15px] text-gray-900 dark:text-white truncate mb-1">${chat.title}</h3>
                             <p class="text-[13px] text-gray-500 truncate">${messagePreview}</p>
                         </div>
-                        <i class="ph ph-caret-right text-xl text-gray-300 dark:text-gray-600 group-hover:text-gray-500 transition-colors"></i>
+                        <iconify-icon icon="heroicons:chevron-right" class="text-xl text-gray-300 dark:text-gray-600 group-hover:text-gray-500 transition-colors"></iconify-icon>
                     `;
                     resultsContainer.appendChild(div);
                 });
@@ -655,7 +764,7 @@
             
             chats.forEach(chat => {
                 const div = document.createElement('div');
-                div.className = "p-4 border border-gray-200 dark:border-gray-800 rounded-xl hover:bg-gray-50 dark:hover:bg-[#171717] cursor-poGoogle Sans Flex transition-colors";
+                div.className = "p-4 border border-gray-200 dark:border-gray-800 rounded-xl hover:bg-gray-50 dark:hover:bg-[#171717] cursor-pointer transition-colors";
                 div.onclick = () => { loadChat(chat.id); closeSettings(); };
                 
                 const date = new Date(chat.updatedAt || parseInt(chat.id));
@@ -667,11 +776,11 @@
                         <div class="flex-1 min-w-0">
                             <h3 class="font-medium text-[15px] text-gray-900 dark:text-white truncate mb-1">${chat.title}</h3>
                             <div class="flex items-center gap-3 text-[13px] text-gray-500">
-                                <span><i class="ph ph-calendar-blank mr-1"></i>${dateString}</span>
-                                <span><i class="ph ph-chats mr-1"></i>${messageCount} tin nhắn</span>
+                                <span class="flex items-center"><iconify-icon icon="heroicons:calendar" class="mr-1"></iconify-icon>${dateString}</span>
+                                <span class="flex items-center"><iconify-icon icon="heroicons:chat-bubble-left-right" class="mr-1"></iconify-icon>${messageCount} tin nhắn</span>
                             </div>
                         </div>
-                        <i class="ph ph-arrow-right text-lg text-gray-300 dark:text-gray-600"></i>
+                        <iconify-icon icon="heroicons:arrow-right" class="text-lg text-gray-300 dark:text-gray-600"></iconify-icon>
                     </div>
                 `;
                 list.appendChild(div);
@@ -685,7 +794,7 @@
             const sendBtn = document.getElementById('send-btn');
             if(textarea.value.trim() === '' && !attachedFile) {
                 sendBtn.className = "p-2 mb-1.5 mr-1.5 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full transition-colors shrink-0 flex items-center justify-center w-9 h-9";
-                sendBtn.querySelector('i').classList.remove('text-white');
+                sendBtn.querySelector('iconify-icon').classList.remove('text-white');
             } else {
                 sendBtn.className = "p-2 mb-1.5 mr-1.5 bg-black dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shrink-0 flex items-center justify-center w-9 h-9";
             }
@@ -706,17 +815,17 @@
             previewContainer.innerHTML = `
                 <div class="relative bg-white dark:bg-[#262626] border border-gray-200 dark:border-gray-700 rounded-xl p-2.5 flex items-center gap-3 shadow-sm max-w-[260px]">
                     <div class="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-500 shrink-0">
-                        <i class="ph-fill ph-file-text text-[18px]"></i>
+                        <iconify-icon icon="heroicons:document-text-solid" class="text-[18px]"></iconify-icon>
                     </div>
                     <div class="flex-1 min-w-0 pr-3">
                         <p class="text-[13px] font-medium text-gray-900 dark:text-white truncate">${file.name}</p>
                         <p class="text-[11px] text-gray-500 mt-0.5" id="file-status">Đang tải lên (2 phút)...</p>
                     </div>
                     <div id="file-spinner" class="absolute -top-2 -right-2 w-6 h-6 bg-white dark:bg-[#171717] rounded-full shadow-md border border-gray-200 dark:border-gray-700 flex items-center justify-center z-10">
-                       <i class="ph ph-spinner animate-spin text-[12px] text-gray-600 dark:text-gray-300"></i>
+                       <iconify-icon icon="heroicons:arrow-path" class="animate-spin text-[12px] text-gray-600 dark:text-gray-300"></iconify-icon>
                     </div>
                     <button id="file-remove-btn" onclick="removeAttachedFile()" class="hidden absolute -top-2 -right-2 w-6 h-6 bg-gray-100 hover:bg-red-500 dark:bg-gray-700 dark:hover:bg-red-500 text-gray-500 hover:text-white dark:text-gray-300 dark:hover:text-white rounded-full shadow-md items-center justify-center transition-colors z-10">
-                        <i class="ph ph-x text-[12px]"></i>
+                        <iconify-icon icon="heroicons:x-mark" class="text-[12px]"></iconify-icon>
                     </button>
                 </div>
             `;
@@ -779,7 +888,7 @@
                 if (!block.parentElement.querySelector('.copy-code-btn')) {
                     const btn = document.createElement('button');
                     btn.className = 'copy-code-btn';
-                    btn.innerHTML = '<i class="ph ph-copy text-sm"></i> Sao chép';
+                    btn.innerHTML = '<iconify-icon icon="heroicons:document-duplicate" class="text-sm"></iconify-icon> Sao chép';
                     btn.onclick = () => {
                         const el = document.createElement('textarea');
                         el.value = block.innerText;
@@ -788,9 +897,9 @@
                         document.execCommand('copy');
                         document.body.removeChild(el);
 
-                        btn.innerHTML = '<i class="ph ph-check text-sm text-green-400"></i> Đã chép';
+                        btn.innerHTML = '<iconify-icon icon="heroicons:check" class="text-sm text-green-400"></iconify-icon> Đã chép';
                         setTimeout(() => {
-                            btn.innerHTML = '<i class="ph ph-copy text-sm"></i> Sao chép';
+                            btn.innerHTML = '<iconify-icon icon="heroicons:document-duplicate" class="text-sm"></iconify-icon> Sao chép';
                         }, 2000);
                     };
                     block.parentElement.appendChild(btn);
@@ -872,16 +981,16 @@
                 const isActive = chat.id === currentChatId;
                 const div = document.createElement('div');
                 
-                div.className = `group flex items-center justify-between px-3 py-2.5 rounded-xl cursor-poGoogle Sans Flex transition-colors ${isActive ? 'bg-gray-200 dark:bg-[#262626] text-gray-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-[#262626]/40'}`;
+                div.className = `group flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors ${isActive ? 'bg-gray-200 dark:bg-[#262626] text-gray-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-[#262626]/40'}`;
                 div.onclick = () => loadChat(chat.id);
                 
                 div.innerHTML = `
-                    <div class="flex items-center gap-2 overflow-hidden">
-                        <i class="ph ph-chat-circle text-base text-gray-400 dark:text-gray-500"></i>
-                        <span class="text-[13px] truncate">${chat.title}</span>
+                    <div class="flex items-center gap-2 overflow-hidden flex-1 min-w-0">
+                        <iconify-icon icon="heroicons:chat-bubble-left" class="text-base text-gray-400 dark:text-gray-500 shrink-0"></iconify-icon>
+                        <span class="text-[13px] truncate flex-1">${chat.title}</span>
                     </div>
-                    <button onclick="deleteChat('${chat.id}', event)" class="opacity-0 group-hover:opacity-100 p-1 hover:text-red-500 dark:hover:text-red-400 transition-colors bg-transparent border-0 cursor-poGoogle Sans Flex">
-                        <i class="ph ph-trash text-[15px]"></i>
+                    <button onclick="deleteChat('${chat.id}', event)" class="opacity-0 group-hover:opacity-100 p-1 hover:text-red-500 dark:hover:text-red-400 transition-colors bg-transparent border-0 cursor-pointer flex items-center justify-center shrink-0 ml-1">
+                        <iconify-icon icon="heroicons:trash" class="text-[15px]"></iconify-icon>
                     </button>
                 `;
                 list.appendChild(div);
@@ -907,21 +1016,21 @@
             } else {
                 html = `
                     <div class="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center shrink-0 mt-0.5 border border-gray-200 dark:border-gray-700 shadow-sm">
-                        <i class="ph-fill ph-sparkle text-base text-white dark:text-black"></i>
+                        <iconify-icon icon="heroicons:sparkles-solid" class="text-base text-white dark:text-black"></iconify-icon>
                     </div>
                     <div class="flex-1 min-w-0 max-w-full">
                         <div class="font-semibold text-[14.5px] text-gray-900 dark:text-white mb-1.5">Episteme AI</div>
                         <div class="prose max-w-none markdown-body ${isStreaming ? 'cursor-blink' : ''}">${isStreaming ? '' : DOMPurify.sanitize(marked.parse(content))}</div>
                         
                         <div class="msg-actions flex items-center gap-1.5 mt-3 -ml-2">
-                            <button onclick="copyMessageText(this)" data-content="${encodeURIComponent(content)}" class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors" title="Sao chép">
-                                <i class="ph ph-copy text-lg"></i>
+                            <button onclick="copyMessageText(this)" data-content="${encodeURIComponent(content)}" class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors flex items-center justify-center" title="Sao chép">
+                                <iconify-icon icon="heroicons:document-duplicate" class="text-lg"></iconify-icon>
                             </button>
-                            <button class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors" title="Tuyệt vời">
-                                <i class="ph ph-thumbs-up text-lg"></i>
+                            <button class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors flex items-center justify-center" title="Tuyệt vời">
+                                <iconify-icon icon="heroicons:hand-thumb-up" class="text-lg"></iconify-icon>
                             </button>
-                            <button class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors" title="Chưa tốt">
-                                <i class="ph ph-thumbs-down text-lg"></i>
+                            <button class="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 rounded-md transition-colors flex items-center justify-center" title="Chưa tốt">
+                                <iconify-icon icon="heroicons:hand-thumb-down" class="text-lg"></iconify-icon>
                             </button>
                         </div>
                     </div>
@@ -946,7 +1055,7 @@
             document.body.removeChild(el);
 
             const oldHtml = btn.innerHTML;
-            btn.innerHTML = '<i class="ph ph-check text-lg text-black dark:text-white"></i>';
+            btn.innerHTML = '<iconify-icon icon="heroicons:check" class="text-lg text-black dark:text-white"></iconify-icon>';
             setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
         }
 
@@ -1007,7 +1116,7 @@
             
             // Xử lý gửi nội dung nếu có file đính kèm
             if (attachedFile) {
-                displayContent = `<div class="flex items-center gap-2 px-3 py-2 bg-gray-200 dark:bg-gray-800 rounded-lg w-fit mb-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm border border-gray-300 dark:border-gray-700"><i class="ph-fill ph-file-text text-blue-500 text-lg"></i><span class="font-medium truncate max-w-[200px]">${attachedFile.name}</span></div>${text}`;
+                displayContent = `<div class="flex items-center gap-2 px-3 py-2 bg-gray-200 dark:bg-gray-800 rounded-lg w-fit mb-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm border border-gray-300 dark:border-gray-700"><iconify-icon icon="heroicons:document-text-solid" class="text-blue-500 text-lg"></iconify-icon><span class="font-medium truncate max-w-[200px]">${attachedFile.name}</span></div>${text}`;
                 finalContent = `[Đã đính kèm tệp: ${attachedFile.name}]\n${text}`;
                 removeAttachedFile();
             }
